@@ -49,6 +49,7 @@ func main() {
 		ErrExit(err)
 
 		of, err := os.Create(outfile)
+		ErrExit(err)
 		rz := ar.Zip{}
 		rz.Open(of)
 

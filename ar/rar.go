@@ -124,13 +124,13 @@ func (r *Rar) CheckRAR(archive string) (string, error) {
 		return "", fmt.Errorf("opening archive file: %v", err)
 	}
 
-	buf := make([]byte, 4, 4)
+	buf := make([]byte, 4)
 	_, err = file.Read(buf)
 	if err != nil { return "", err }
 	file.Close()
-	if bytes.Compare(buf, ZIP_HEADER) == 0 {
+	if bytes.Equal(buf, ZIP_HEADER) {
 		return "zip", errors.New("archive is already CBZ (extension incorrect?)")
-	} else if bytes.Compare(buf, RAR_HEADER) != 0 {
+	} else if !bytes.Equal(buf, RAR_HEADER) {
 		return "und", errors.New("input is not a RAR archive")
 	}
 	return "rar", nil
