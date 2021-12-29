@@ -22,6 +22,9 @@ Help Options:
   -h, --help          Show this help message
 ```
 
+### Renaming
+`cbr2cbz` can optionally rename files with incorrect extensions with the `-r` flag. If a file with the extension `.cbr` is actually a CBZ file, `cbr2cbz` will rename it in place (if an output file is not provided) or to the provided output file.
+
 ## License
 This project is under the MIT license.  
 Sections of `ar/rar.go` and `ar/util.go` under MIT from [mholt/archiver](https://github.com/mholt/archiver).
