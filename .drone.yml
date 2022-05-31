@@ -7,7 +7,7 @@ steps:
     image: golang
     failure: ignore
     commands:
-      - wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.42.1
+      - wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.44.1
       - golangci-lint run
 
 #  - name: test
@@ -27,7 +27,7 @@ steps:
       note: CHANGELOG.md
       api_key:
         from_secret: gitea_token
-      base_url: https://git.neveris.one
+      base_url: https://git.gryffyn.io
       files: cbr2cbz
       checksum:
         - sha256

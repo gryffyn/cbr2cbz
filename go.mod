@@ -1,4 +1,4 @@
-module git.neveris.one/gryffyn/cbr2cbz
+module git.gryffyn.io/gryffyn/cbr2cbz
 
 go 1.17
 

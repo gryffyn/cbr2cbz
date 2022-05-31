@@ -7,7 +7,7 @@ import (
 	"path"
 	"strings"
 
-	"git.neveris.one/gryffyn/cbr2cbz/ar"
+	"git.gryffyn.io/gryffyn/cbr2cbz/ar"
 	"github.com/jessevdk/go-flags"
 )
 
@@ -44,6 +44,22 @@ func main() {
 			ErrExit(fterr)
 		} else {
 			ErrExit(err)
+
+			of, err := os.Create(outfile)
+			ErrExit(err)
+			rz := ar.Zip{}
+			rz.Open(of)
+
+			err = rt.Walk(opts.Positional.CBR, func(f ar.File) error {
+				err := rz.WriteFile(f)
+				return err
+			})
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			rz.Close()
+			of.Close()
 		}
 	} else {
 		ErrExit(err)
@@ -74,3 +90,4 @@ func ErrExit(err error) {
 		os.Exit(1)
 	}
 }
+
