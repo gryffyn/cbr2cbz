@@ -1,2 +1,4 @@
 .idea/
 cbr2cbz
+test/
+cbr2cbz_cgo

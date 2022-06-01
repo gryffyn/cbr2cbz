@@ -42,7 +42,7 @@ type Rar struct {
 	rr *rardecode.Reader     // underlying stream reader
 }
 
-func (r *Rar) Open(in io.Reader, size int64) error {
+func (r *Rar) Open(in io.Reader) error {
 	if r.rr != nil {
 		return fmt.Errorf("rar archive is already open for reading")
 	}
@@ -87,7 +87,7 @@ func (r *Rar) Walk(archive string, walkFn func(f File) error) error {
 	}
 	defer file.Close()
 
-	err = r.Open(file, 0)
+	err = r.Open(file)
 	if err != nil {
 		return fmt.Errorf("opening archive: %v", err)
 	}
